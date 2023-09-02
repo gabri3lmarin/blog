@@ -6,9 +6,6 @@
 
 (def source-dir "resources")
 
-(keys
- (stasis/slurp-directory source-dir #".*\.md$"))
-
 ;; Functions
 (defn key-to-html [s]
   (str/replace s #".md" ".html"))
@@ -22,7 +19,7 @@
 (defn apply-header-footer [page]
   (hiccup/html5 {:lang "en"}
     [:head
-     [:title "Static website!"]
+     [:title "Gabriel Marin"]
      [:meta {:charset "utf-8"}]
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
@@ -32,12 +29,12 @@
      [:body
       [:div {:class "header"}
        [:div {:class "name"}
-        [:a {:href "/"} "Gabriel Marin"]
+        [:a {:href "/"} "(Gabriel Marin)"]
         [:div {:class "header-right"}
          [:a {:href "/posts"} "Posts"]]]]
       page]
      [:footer
-      [:p "Copyright 2023 Gabriel Marin"]]]))
+      [:p "Copyright © 2023 Gabriel Marin"]]]))
 
 (defn format-pages [m]
   (let [html-keys (keys m)
