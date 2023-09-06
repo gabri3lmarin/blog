@@ -1,6 +1,3 @@
 # Home page for posts. 
 
-Your posts should be displayed here. 
-
-
-POSTSHERE
+[First Post](./first_post.html)
