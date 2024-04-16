@@ -2,11 +2,18 @@
   (:require [clojure.string :as str]
             [stasis.core :as stasis]
             [markdown.core :as md]
-            [hiccup.page :as hiccup]))
-
+            [hiccup.page :as hiccup]
+            [optimus.assets :as assets]
+            [optimus.optimizations :as optimizations]
+            [optimus.prime :as optimus]
+            [optimus.export]
+            [optimus.strategies :refer [serve-live-assets]]))
 (def source-dir "resources")
 
 ;; Functions
+(defn get-assets []
+  (assets/load-assets "public" ["/marincv.pdf"]))
+
 (defn key-to-html [s]
   (str/replace s #".md" ".html"))
 
@@ -34,7 +41,7 @@
          [:a {:href "/posts"} "Posts"]]]]
       page]
      [:footer
-      [:p "Copyright © 2023 Gabriel Marin"]]]))
+      [:p "Copyright © 2023-2024 Gabriel Marin"]]]))
 
 (defn format-pages [m]
   (let [html-keys (keys m)
@@ -52,16 +59,25 @@
         css-map (get-css source-dir)]
     (stasis/merge-page-sources {:css css-map
                                 :pages page-map})))
+
+(defn get-pages []
+  (merge-website-assets! source-dir))
+
 ;; Rendering
+(def optimize optimizations/all)
+
 (def server
-  (stasis/serve-pages
-   (merge-website-assets! source-dir)))
+  (-> (stasis/serve-pages (get-pages))
+      (optimus/wrap get-assets optimize serve-live-assets)))
 
 ;; Exporting
 (def out-dir "docs")
 
 (defn export! []
-  (stasis/empty-directory! out-dir)
-  (stasis/export-pages
-   (merge-website-assets! source-dir) out-dir)
-  (println "Website is ready!"))
+  (let [assets (optimize (get-assets) {})]
+    (stasis/empty-directory! out-dir)
+    (optimus.export/save-assets assets out-dir)
+    (stasis/export-pages
+     (get-pages) out-dir
+     {:optimus-assets assets})
+    (println "Website is ready!")))

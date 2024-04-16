@@ -1,3 +1,17 @@
+/* /css/style.css */
+ html{
+     font-size: 16px;
+     font-family: "sans-serif";
+     line-height: 1.35;
+ }
+
+ body{
+     max-width: 600px;
+     margin-left: 25%;
+     margin-top: 10px;
+     margin-bottom: 10px;
+ }
+
 .header {
     /* border: 3px solid green; */
     overflow: hidden;
@@ -22,7 +36,7 @@
 }
 
 footer {
-    /* border: 3px solid red; */
+    /*border: 3px solid red;*/
     padding-left: 1em;
     padding-right: 1em;
     margin-top: 2rem;
@@ -31,7 +45,7 @@ footer {
     position: center;
     margin-left: 25%;
     margin-right: 25%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #696969;  
     max-width: 600px;
 }
