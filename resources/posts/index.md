@@ -1,3 +1,3 @@
-# Home page for posts. 
+# Blog posts 
 
 [First Post](./first_post.html)
