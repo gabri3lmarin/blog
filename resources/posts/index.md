@@ -1,3 +1,3 @@
-# Blog posts 
-
-[First Post](./first_post.html)
+# Posts
+[Hand position when writing](./hand-position-when-writing.html)
+[First Post](./first-post.html)
