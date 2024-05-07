@@ -8,7 +8,9 @@
                  [markdown-clj "1.12.1"]
                  [hiccup "2.0.0-RC3"]
                  [ring "1.12.1"]
-                 [optimus "2023.11.21"]]
+                 [optimus "2023.11.21"]
+                 [com.datomic/datomic-free "0.9.5697"]
+                 [mapdown "0.2.1"]]
   :ring {:handler blog.core/server}
   :profiles {:dev {:plugins [[lein-ring "0.12.6"]]}}
   :repl-options {:init-ns blog.core}

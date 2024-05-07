@@ -1,37 +1,50 @@
 (ns blog.resources
   (:require [blog.layout :as layout]
+            [blog.posts :as posts]
+            [blog.database :as database]
             [clojure.string :as str]
             [markdown.core :as md]
+            [mapdown.core :as mp]
             [stasis.core :as stasis]
-            [optimus.assets :as assets]))
-
-(def source-dir "resources")
+            [optimus.assets :as assets]
+            [datomic.api :as d]))
 
 (defn get-assets []
   (assets/load-assets "public" ["/marincv.pdf"]))
 
-(defn key-to-html [s]
-  (str/replace s #".md" ".html"))
+(defn read-and-convert-posts! [src]
+  (let [data  (stasis/slurp-directory src #"/posts/.*\.md$")
+        posts-paths (map posts/key-to-html (keys data))
+        posts-content (map md/md-to-html-string
+                          (map #(:post/body (mp/parse %))
+                               (vals data)))]
+    (zipmap posts-paths posts-content)))
 
-(defn read-and-convert! [src]
-  (let [data  (stasis/slurp-directory src #".*\.md$")
-        html-paths (map key-to-html (keys data))
-        html-content (map md/md-to-html-string (vals data))]
-    (zipmap html-paths html-content)))
+(defn get-public-map []
+  (let [data (stasis/slurp-directory "resources"  #"/public/.*\.md$")
+        public-paths (map #(str/replace % #".md" ".html") (keys data))
+        public-contents (map md/md-to-html-string (vals data))]
+    (zipmap public-paths public-contents)))
 
 (defn get-css [src]
   (stasis/slurp-directory src #".*\.css$"))
 
-(defn format-pages [m]
-  (let [html-keys (keys m)
-        page-data (map layout/apply-header-footer (vals m))]
-    (zipmap html-keys page-data)))
+(defn format-pages [m db]
+  (let [up-m (assoc m "/index.html" (posts/posts-titles-page db))
+        up-m (into up-m (get-public-map))
+        html-keys (keys up-m)
+        html-vals (map layout/apply-header-footer (vals up-m))]
+    (zipmap html-keys html-vals)))
 
-(defn merge-website-assets! [root-dir]
-  (let [page-map (format-pages (read-and-convert! source-dir))
-        css-map (get-css source-dir)]
+(defn merge-website-assets! [src db]
+  (let [page-map (format-pages (read-and-convert-posts! "resources")
+                               db)
+        css-map (get-css "resources")]
     (stasis/merge-page-sources {:css css-map
                                 :pages page-map})))
 
-(defn get-pages []
-  (merge-website-assets! source-dir))
+(defn get-pages [db]
+  (merge-website-assets! "resources" db))
+
+(comment
+  )

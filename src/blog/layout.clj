@@ -10,14 +10,14 @@
      [:meta {:name "viewport"
              :content "width=device-width, initial-scale=1.0"}]
      [:link {:type "text/css"
-             :href "/css/style.css"
+             :href "/public/css/style.css"
              :rel "stylesheet"}] ;; css
      [:body
       [:div {:class "header"}
        [:div {:class "name"}
         [:a {:href "/"} "(Gabriel Marin)"]
         [:div {:class "header-right"}
-         [:a {:href "/posts"} "Posts"]]]]
+         [:a {:href "public/about.html"} "About"]]]]
       page]
      [:footer
       [:p "Copyright © 2023-2024 Gabriel Marin"]]]))

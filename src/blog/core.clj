@@ -1,6 +1,8 @@
 (ns blog.core
   (:require [blog.layout :as layout]
             [blog.resources :as resources]
+            [blog.database :as database]
+            [datomic.api :as d]
             [stasis.core :as stasis]
             [optimus.optimizations :as optimizations]
             [optimus.prime :as optimus]
@@ -11,18 +13,20 @@
 (def optimize optimizations/all)
 
 (def server
-  (-> (stasis/serve-pages (resources/get-pages))
-      (optimus/wrap resources/get-assets optimize serve-live-assets)))
+  (let [conn (database/db-conn)]
+    (database/add-posts conn)
+    (-> (stasis/serve-pages (resources/get-pages (d/db conn)))
+        (optimus/wrap resources/get-assets optimize serve-live-assets))))
 
 ;; Exporting
 (def out-dir "docs")
 
-
 (defn export! []
-  (let [assets (optimize (resources/get-assets) {})]
+  (let [assets (optimize (resources/get-assets) {})
+        conn (database/db-conn)]
     (stasis/empty-directory! out-dir)
     (optimus.export/save-assets assets out-dir)
     (stasis/export-pages
-     (resources/get-pages) out-dir
+     (resources/get-pages (d/db conn)) out-dir
      {:optimus-assets assets})
     (println "Website is ready!")))

@@ -1,4 +1,8 @@
+:post/title Hand position when writing
+
+:post/body
 # Hand position when writing
+
 
 After a lot of typing my wrist started to hurt.
 So I done some research and found out that the best way
