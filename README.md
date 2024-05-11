@@ -1,9 +1,13 @@
-# Blog
+# gabri3lmarin.github.io
 Simple blog written in Clojure.
 
-Libraries used:
-- stasis
-- ring
-- hiccup
-- optimus
+## Build site
+``` sh
+lein build-site
+```
+
+## Live development
+``` sh
+lein ring server
+```
 
