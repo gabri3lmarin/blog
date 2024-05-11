@@ -10,7 +10,7 @@
             [datomic.api :as d]))
 
 (defn get-assets []
-  (assets/load-assets "public" ["/marincv.pdf"]))
+  (assets/load-assets "public" ["/cv/gmarin.pdf"]))
 
 (defn read-and-convert-posts! [src]
   (let [data  (stasis/slurp-directory src #"/posts/.*\.md$")

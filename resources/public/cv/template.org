@@ -1,0 +1,32 @@
+#+DATE:
+#+OPTIONS: toc:nil num:nil author:nil email:nil
+#+LATEX_CLASS:article
+#+LATEX_CLASS_OPTIONS:[a4paper,12pt]
+
+# Hide page number
+#+LATEX_HEADER: \pagenumbering{gobble}
+
+#+LATEX_HEADER:\usepackage[defaultsans]{opensans}
+#+LATEX_HEADER:\usepackage[T1]{fontenc}
+#+LATEX_HEADER:\usepackage[big]{layaureo} %better A4 formating
+#+LATEX_HEADER:\usepackage{titlesec} %custom \section
+#+LATEX_HEADER:\usepackage{url,parskip} %packages for formating
+#+LATEX_HEADER:\usepackage{multicol} % multiples columns
+#+LATEX_HEADER:\usepackage{ragged2e} % for alignment
+#+LATEX_HEADER:\usepackage{color}
+#+LATEX_HEADER:\usepackage{graphicx}
+#+LATEX_HEADER:\usepackage{svg}
+#+LATEX_HEADER:\usepackage{hyperref}
+
+# Hyperlinks
+#+LATEX_HEADER:\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+#+LATEX_HEADER:\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
+
+# Headings
+#+LATEX_HEADER:\titleformat{\section}{\LARGE\scshape\raggedright}{\thesection}{1em}{}
+#+LATEX_HEADER:\titlespacing{\section}{0pt}{4pt}{4pt}
+#+LATEX_HEADER:\setlength{\columnsep}{1cm} % space between columns
+
+# Subheadings
+#+LATEX_HEADER:\titleformat{\subsection}{\large\scshape\raggedright}{\thesubsection}{1em}{}
+#+LATEX_HEADER:\titlespacing{\subsection}{0pt}{1pt}{1pt}
