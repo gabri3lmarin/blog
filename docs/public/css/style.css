@@ -17,7 +17,7 @@ body {
     max-width: 800px;
     margin-top: 0.5em;
     margin-bottom: 2em;
-    font-size: 22px;
+    font-size: 20px;
     border-bottom: 1px solid black;
 }
 
@@ -49,16 +49,32 @@ footer {
 }
 
 /* Phone */
+@media only screen and (min-width: 320px) {
+    .header {
+        font-size: 14px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+}
+
 @media only screen and (min-width: 480px) {
     .header {
         font-size: 16px;
+    }
+    body {
+        font-size: 14px;
     }
 }
 
 /* Desktop */
 @media only screen and (min-width:1025px) {
       .header {
-          font-size: 22px;
+          font-size: 20px;
+      }
+      body {
+          font-size: 18px
       }
 }
 
