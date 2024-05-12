@@ -17,7 +17,7 @@
        [:div {:class "name"}
         [:a {:href "/"} "(Gabriel Marin)"]
         [:div {:class "header-right"}
-         [:a {:href "public/about.html"} "About"]]]]
+         [:a {:href "/public/about.html"} "About"]]]]
       page]
      [:footer
       [:p "Copyright © 2023-2024 Gabriel Marin"]]]))
