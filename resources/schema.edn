@@ -1,9 +1,14 @@
 [
+
  ;; Markdown page
-  {:db/ident :post/path
+ {:db/ident :post/path
   :db/valueType :db.type/string
   :db/cardinality :db.cardinality/one}
- 
+
+ {:db/ident :post/time
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one}
+
  {:db/ident :post/title
   :db/valueType :db.type/string
   :db/cardinality :db.cardinality/one}
@@ -11,5 +16,5 @@
  {:db/ident :post/body
   :db/valueType :db.type/string
   :db/cardinality :db.cardinality/one}
- 
+
  ]

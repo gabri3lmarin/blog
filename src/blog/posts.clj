@@ -56,4 +56,14 @@
     
     )
 
+  (-> (java.io.File. "resources/posts/hand-position-when-writing.md")
+      .lastModified)
+
+    (-> (java.io.File. "resources/posts/hand-position-when-writing.md")
+      .toPath)
+
+  (java.nio.file.attribute.BasicFileAttributes )
+
+  (-> (java.nio.file.Path "resources/posts/hand-position-when-writing.md"))
+
   )

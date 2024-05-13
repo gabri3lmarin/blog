@@ -10,16 +10,21 @@
         post-content (vals data)]
     (zipmap post-path post-content)))
 
+;; TODO: To much is done in this function...
+;; Needs refactoring
 (defn add-posts [conn]
   (let [posts-map (get-posts "resources")
         posts-path (keys posts-map)
         posts-content (vals posts-map)
-        posts
-        (map #(md/parse (str %1 %2))
-             (map #(str ":post/path " % "\n")
-                  posts-path)
-             posts-content)]
-     @(d/transact conn posts)))
+        posts-time (map #(.lastModified (java.io.File.
+                                         (str "./resources" %)))
+                        posts-path)
+        posts (map #(md/parse (str %1 %2))
+                   (map #(str ":post/path " % "\n")
+                        posts-path)
+                   posts-content)
+        posts (map #(assoc %1 :post/time %2) posts posts-time)]
+    @(d/transact conn posts)))
 
 (defn db-conn []
   (d/create-database "datomic:mem://blog")
@@ -35,9 +40,9 @@
                      :where
                      [_ :post/path ?post-path]])
 
-(def posts-map-q '[:find (pull ?e [:post/path :post/title :post/body])
-                   :where
-                   [?e :post/path]])
+(def posts-map-q '[:find (pull ?e [:post/path :post/time
+                                   :post/title :post/body])
+                   :where [?e :post/time]])
 
 (comment
   (d/delete-database "datomic:mem://blog")
@@ -106,6 +111,14 @@
   (d/q all-paths-q db)
   (d/q all-titles-q db)
   (d/q posts-map-q db)
+
+  (->
+   (d/q posts-map-q db)
+   (first))
+
+  (->
+   (d/q posts-map-q db)
+   )
  
   (map #(hiccup.core/html [:h1 (first %)])
        (d/q all-titles-q db))
@@ -122,4 +135,9 @@
          :where
          [_ :post/title ?post-title]]
        db)
+
+  (let [posts-map (get-posts "resources")])
+  (.lastModified (java.io.File. (str "/resources" %)))
+
   )
+
