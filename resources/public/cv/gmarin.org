@@ -3,8 +3,8 @@
 * *Gabriel Marin*
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}}
 | Email  | [[mailto:marin.gabriel@protonmail.com][marin.gabriel@protonmail.com]] |
-| Github | [[https://github.com/gabri3lmarin][github.com/gabri3lmarin]]      |
-| Site   | [[https://gabri3lmarin.github.io][gabri3lmarin.github.io]]       |
+| Github | [[https://github.com/gbrlmarn][github.com/gbrlmarn]] |
+| Site   | [[https://gbrlmarn.github.io][gbrlmarn.github.io]] |
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}}
 | About | Hello, I'm a software engineer with a background in networking |
 |       | and programming, passionate about open source software,        |
@@ -14,23 +14,24 @@
 
 ** *Experience*
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}}
-| 2022-Present | Software Engineer at Luxoft, Bucharest                           |
-|              | Maintained project building environment using CMake.             |
-|              | Done socket programming using ZeroMQ library in C/C++.           |
-|              | Automated environment configuration using Docker and Bash.       |
-|              | Created integration tests using Golang and Clojure.              |
-|              | Developed command line interface for sending/receiving messages. |
+| 2022-Present | *Software Engineer* at Luxoft, Bucharest                         |
+|              | Maintained project building environment using CMake              |
+|              | Done socket programming using ZeroMQ library in C/C++            |
+|              | Automated environment configuration using Docker and Bash        |
+|              | Created integration tests using Golang and Clojure               |
+|              | Developed command line interface for sending/receiving messages  |
 |              | Developed certificate viewer in C++ using OpenSSL API            |
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}}
-|    2021-2022 | Software Engineer at Continental, Sibiu                              |
-|              | Worked on code generator, parsing XML and Json with Java and Python. |
+| 2021-2022 | *Software Engineer* at Continental, Sibiu                            |
+|           | Worked on XML generator using Java and AUTOSAR library               |
+|           | Converted JSON to XML data using Python  |
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}} 
-|    2019-2021 | System Engineer at Ministry of Internal Affairs, Rm.Valcea           |
-|              | Developed scripts for task automation with PowerShell.               |
-|              | Deployed and configured Radius server and Squid proxy.               |
-|    2018-2019 | Middleware Engineer at Ministry of Internal Affairs, Bucharest       |
-|              | Provided layer 1 support.                                            |
-|              | Managed users access in Oracle SQL database.                         |
+|    2019-2021 | *System Engineer* at Ministry of Internal Affairs, Rm.Valcea         |
+|              | Developed scripts for task automation with PowerShell                |
+|              | Deployed and configured Radius server and Squid proxy                |
+|    2018-2019 | *Middleware Engineer* at Ministry of Internal Affairs, Bucharest     |
+|              | Provided layer 1 support                                             |
+|              | Managed users access in Oracle SQL database                          |
 
 ** *Education*
 #+ATTR_LATEX: :environment tabular :align {p{3cm}|p{13cm}}
